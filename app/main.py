@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 
 from .schemas import RootResponse, Link
-from .stuff.router import stuff
+from .hello.router import hello
+from .things.router import things
 
 app = FastAPI()
 
@@ -11,9 +12,11 @@ def app_root():
     return RootResponse(
         _links=[
             Link(rel="self", href="/"),
-            Link(rel="stuff", href="/stuff"),
+            Link(rel="hello", href=hello.prefix),
+            Link(rel="things", href=things.prefix),
         ],
     )
 
 
-app.include_router(stuff)
+app.include_router(hello)
+app.include_router(things)

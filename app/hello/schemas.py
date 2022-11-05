@@ -1,10 +1,8 @@
 from pydantic import BaseModel, Field
 
-
-class Link(BaseModel):
-    rel: str
-    href: str
+from ..schemas import Link
 
 
-class RootResponse(BaseModel):
+class HelloResponse(BaseModel):
     links: list[Link] = Field(alias="_links")
+    message: str
